@@ -1,47 +1,56 @@
 package com.company;
 
 import java.security.InvalidParameterException;
+import java.util.Iterator;
+import java.util.NoSuchElementException;
+import java.util.WeakHashMap;
 
 public class Stack {
-    private String[] container;
-    private int last = -1;
-    public boolean isFull(){
-        return (last==(container.length-1));
-    }
+
+    private Node last = null;
+
     public boolean isEmpty(){
-        return last==-1;
+        return last==null;
     }
+
     public static boolean Validate(String value){
         return value.matches("^([01]+)$");
     }
-    public Stack(int size){
-        container = new String[size];
+
+    public Stack(){
     }
     public void Push(String value){
         if(!Validate(value)){
+            System.out.println(value);
             throw new InvalidParameterException("Invalid Parameter");
         }
-        if(isFull()){
-            throw new IndexOutOfBoundsException("Stack Overflow)))))");
-        }
-        container[++last] = value;
+        Node tmp = new Node(value);
+        tmp.next = last;
+        last = tmp;
     }
-    public String Pop() {
+    public Node Pop() {
         if (isEmpty())
             return null;
-        String tmp =  container[last];
-        container[last] = null;
-        last--;
+        Node tmp = last;
+        last = last.next;
         return tmp;
     }
-    public String Peek(){
+    public Node Peek(){
         if (isEmpty())
             return null;
-        return container[last];
+        Node tmp = last;
+        while(tmp.next!=null){
+            tmp = tmp.next;
+        }
+        return tmp;
     }
     public void Dump(){
-        for(String el:container){
-            System.out.println(el);
+        Node tmp = last;
+        if(isEmpty())
+            return;
+        while(tmp!=null){
+            System.out.println(tmp.getKey());
+            tmp = tmp.next;
         }
     }
 

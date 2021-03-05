@@ -1,45 +1,45 @@
 package com.company;
 
 public class Queue {
-    protected Node front, rear;
-
-    public Queue() {
-        this.front = this.rear = null;
+    protected String[] container;
+    public Queue(int size) {
+        container = new String[size];
     }
 
-    public void enqueue(Float key) {
-        Node temp;
-            temp = new Node(key);
-
-        if (this.rear == null) {
-            this.front = this.rear = temp;
-            return;
+    public void enqueue(float param) {
+        String key = String.valueOf(param);
+        int counter = 0;
+        for(String tmp:container){
+            if(container[counter]==null){
+                container[counter] = key;
+                break;
+            }
+            counter++;
         }
-        this.rear.next = temp;
-        this.rear = temp;
+        refresh();
     }
+    protected void refresh(){
+        String[] tmp = new String[container.length];
+        int counter = 0;
+        for(String r:container){
+            if(r==null)
+                continue;
+            else
+                container[counter++] = r;
+        }
 
-    public Float dequeue() {
-        if (this.front == null) {
-            return null;
-        }
-        Node temp = this.front;
-        this.front = this.front.next;
-        if (this.front == null) {
-            this.rear = null;
-        }
-        return temp.key;
+    }
+    public String dequeue() {
+        if(container.length>0)
+            return container[0];
+        return null;
     }
     public void Dump(){
-        if(front!=null){
-            for(Node tmp = front;tmp!=null;tmp=tmp.next)
-                System.out.println(tmp.key);
-            }
+        for(String r:container){
+            System.out.println(r);
+        }
     }
     public int Length(){
-        int counter = 0;
-        Node tmp;
-        for(tmp = front;tmp!=null;++counter,tmp=tmp.next );
-        return counter;
+       return container.length;
     }
 }

@@ -3,15 +3,15 @@ package com.company;
 public class Main {
 
     public static void main(String[] args) {
-	    Stack stack = new Stack(5);
+	    Stack stack = new Stack();
         stack.Push("00001100");
         stack.Push("11111111");
         stack.Push("00000000");
         stack.Push("00001111");
         stack.Push("01010101");
         stack.Dump();
-        String a = stack.Peek();
-        String b = stack.Peek();
+        String a = stack.Peek().getKey();
+        String b = stack.Peek().getKey();
 
         System.out.println("---------------------------");
 
@@ -21,7 +21,7 @@ public class Main {
 
         System.out.println("---------------------------");
 
-        QueueT3 queue = new QueueT3();
+        QueueT3 queue = new QueueT3(6);
         queue.enqueue(123F);
         queue.enqueue((float) -123);
         queue.enqueue(-1232.5F);

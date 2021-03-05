@@ -1,19 +1,19 @@
 package com.company;
 
 public class Node {
-    float key;
+    String key;
     Node next;
 
-    public Node(float key)
+    public Node(String key)
     {
         this.key = key;
         this.next = null;
     }
-    public float getKey(){
+    public String getKey(){
         return key;
     }
 
-    public void setKey(float key) {
+    public void setKey(String key) {
         this.key = key;
     }
 }
